@@ -13,6 +13,14 @@ Esta guia se probó en Ubuntu 16.04 y 18.04, pero pasos similares se pueden hace
 nexus-registry-proxy: nexus.local:50001 => este es el host y puerto donde esta publicado el proxy de nexus que apunta al docker registry
 nexus-certificate: es el certificado PEM base 64 con el que está expuesto [nexus-registry-proxy]
 
+## Antes de empezar
+
+Para obtener el certificado [nexus-certificate], se puede utilizar el ejecutable de openssl:
+
+```bash
+openssl s_client -showcerts -connect nexus.local:50001 </dev/null 2>/dev/null|openssl x509 -outform PEM > nexus-certificate.crt
+```
+
 ## Pasos
 
 ### 1- Configurar el docker engine para que confíe en el certificado del nexus
